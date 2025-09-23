@@ -9,13 +9,13 @@
 
 ## Quick Start
 ### Environment (example)
-```
+```shell
 conda create -n leveragedet python=3.10 -y
 conda activate leveragedet
 # Install the PyTorch/torchvision wheels that match your CUDA/OS (see https://pytorch.org)
 # e.g.
 # pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-pip install transformers tqdm pillow
+pip install -r requirements.txt
 ```
 
 ### DINOv3 Pretrained Weights
@@ -39,7 +39,7 @@ pip install transformers tqdm pillow
 
 ## Training
 - Single-GPU linear probe (frozen backbone, train only the linear head):
-```
+```shell
 python train_linear_fixedval.py \
   --train_root /path/to/your/train \
   --val_root   /path/to/your/val   \
@@ -49,14 +49,14 @@ python train_linear_fixedval.py \
 - The best head is saved to `checkpoints/dinov3_linear_head_best.pt`.
 - If `--resume` is provided, the script runs a baseline validation first. When epochs are the default 10 and a checkpoint exists, it auto-expands to 90 epochs for continued training.
 - You can also use the wrapper script:
-```
+```shell
 bash train.sh
 ```
 > Note: `train.sh` mentions a multi-GPU entry (`train_linear_fixedval_multi.py`). If that file is not present in your tree, use the single-GPU script above or provide your own DDP entry.
 
 ## Inference / Evaluation
 - Evaluate one or more dataset roots (each root containing multiple subfolders), and print Acc / Precision / Recall / F1:
-```
+```shell
 python infer_linear_fixedval.py \
   --data_roots /path/A /path/B \
   --model_id dinov3-vitl16-pretrain-lvd1689m \
@@ -74,10 +74,22 @@ python infer_linear_fixedval.py \
   - Data splits: training/validation dataset composition and distributions.
 
 ## Results (placeholders)
-- Chameleon (Val/Test): Acc = [TBD], Precision = [TBD], Recall = [TBD], F1 = [TBD]
+- Chameleon (Val/Test): Acc 85.26% | P 80.28% | R 87.02% | F1 83.52%
+
 - Other datasets:
-  - [Dataset-1]: Acc = [TBD] | P = [TBD] | R = [TBD] | F1 = [TBD]
-  - [Dataset-2]: Acc = [TBD] | P = [TBD] | R = [TBD] | F1 = [TBD]
+  - GenImage: Acc 87.32%
+  
+    | ADM   | BigGAN | Glide | Midjourney | Stable_Diffusion_v_1_4 | Stable_Diffusion_v_1_5 | VQDM  | WuKong |
+    | ----- | ------ | ----- | ---------- | ---------------------- | ---------------------- | ----- | ------ |
+    | 62.82 | 77.20  | 88.98 | 87.51      | 98.70                  | 98.36                  | 88.22 | 96.73  |
+  
+  - AIGI-Holmes P3: Acc 91.54%
+  
+    | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
+    | ----- | -------- | ----- | ------------ | ------------ | -------- | --------- | ------ | ------ | ----- |
+    | 91.46 | 97.66    | 91.01 | 95.58        | 89.99        | 97.90    | 98.30     | 80.75  | 97.90  | 74.84 |
+  
+    
 
 ## Layout
 - `train_linear_fixedval.py`: single-GPU training (frozen backbone + linear head).
