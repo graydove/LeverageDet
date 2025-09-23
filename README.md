@@ -79,7 +79,7 @@ python infer_linear_fixedval.py \
 - Other datasets:
   - GenImage: Acc 87.32%
   
-    | ADM   | BigGAN | Glide | Midjourney | Stable_Diffusion_v_1_4 | Stable_Diffusion_v_1_5 | VQDM  | WuKong |
+    | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
     | ----- | ------ | ----- | ---------- | ---------------------- | ---------------------- | ----- | ------ |
     | 62.82 | 77.20  | 88.98 | 87.51      | 98.70                  | 98.36                  | 88.22 | 96.73  |
   
