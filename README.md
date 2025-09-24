@@ -44,7 +44,7 @@ python train_linear_fixedval.py \
   --train_root /path/to/your/train \
   --val_root   /path/to/your/val   \
   --model_id   dinov3-vitl16-pretrain-lvd1689m \
-  --epochs 10 --batch_size 16 --lr 1e-3 --amp
+  --epochs 100 --batch_size 128 --lr 1e-5 --amp
 ```
 - The best head is saved to `checkpoints/dinov3_linear_head_best.pt`.
 - If `--resume` is provided, the script runs a baseline validation first. When epochs are the default 10 and a checkpoint exists, it auto-expands to 90 epochs for continued training.
