@@ -73,7 +73,7 @@ python infer_linear_fixedval.py \
   - Backbone/features: the specific DINOv3 variant and feature selection (`pooler_output` vs CLS token).
   - Data splits: training/validation dataset composition and distributions.
 
-## Results (placeholders)
+## Results
 - Chameleon (Val/Test): Acc 85.26% | P 80.28% | R 87.02% | F1 83.52%
 
 - Other datasets:
