@@ -93,7 +93,7 @@ python infer_linear_fixedval.py \
   
     | Original | Transfer | Redigital |
     | -------- | -------- | --------- |
-    | 87.31    | 69.85    | 68.06     |
+    | 85.61    | 70.90    | 70.26     |
   
     
 
@@ -128,7 +128,7 @@ python infer_linear_fixedval.py \
 - `infer_linear_fixedval.py`: multi-dataset evaluation and summary reporting.
 - `train.sh`: wrapper that chooses single vs multi-GPU entry based on visible devices.
 - `checkpoints/`: training artifacts (ignored by Git).
-- `dinov3-vitl16-pretrain-lvd1689m/`: local DINOv3 weights folder (ignored by Git and not pushed).
+- `dinov3-vitl16-pretrain-lvd1689m/`: local DINOv3 weights folder.
 
 ## Acknowledgments
 - Paper (arXiv): https://arxiv.org/pdf/2509.12995
