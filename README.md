@@ -1,5 +1,4 @@
-<img width="116" height="24" alt="image" src="https://github.com/user-attachments/assets/826d1c61-5a77-43d9-bdc6-ec9e688c9bc7" /># LeverageDet (DINOv3) — Unofficial Reproduction
-
+# LeverageDet (DINOv3) — Unofficial Reproduction
 > This repository contains an unofficial DINOv3-based reproduction of the paper (arXiv: https://arxiv.org/pdf/2509.12995). We freeze a DINOv3 vision backbone and train a lightweight linear classification head (linear probe) for AIGC image detection. Reproduction results differ from those reported in the paper; see “Reproduction Notes & Differences”.
 
 ## Overview
@@ -87,7 +86,7 @@ python infer_linear_fixedval.py \
     | 91.46 | 97.66    | 91.01 | 95.58        | 89.99        | 97.90    | 98.30     | 80.75  | 97.90  | 74.84 |
 &nbsp;
 ### facebook/dinov3-vit7b16-pretrain-lvd1689m + mlp
-- Chameleon (Val/Test): Acc 93.12% | P 95.66% |R 87.95% | F1 91.64%
+- Chameleon (Val/Test): Acc 93.12% | P 95.66% | R 87.95% | F1 91.64%
 - Other datasets:
   - GenImage: Acc 96.47%
     | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
