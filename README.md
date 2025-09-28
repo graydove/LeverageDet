@@ -98,11 +98,9 @@ python infer_linear_fixedval.py \
     
 
 ### Facebook/dinov3-vit7b16-pretrain-lvd1689m + MLP
-
 - **Chameleon (Val/Test): Acc  93.12%  |  P 95.66%  |  R 87.95%  |  F1 91.64%**
 
 - Other datasets:
-  
   - **GenImage: Acc 96.47%**
   
   | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
@@ -121,6 +119,8 @@ python infer_linear_fixedval.py \
   | -------- | -------- | --------- |
   | 93.89    | 83.70    | 78.41     |
 
+
+  
 ## Layout
 - `train_linear_fixedval.py`: single-GPU training (frozen backbone + linear head).
 - `infer_linear_fixedval.py`: multi-dataset evaluation and summary reporting.
