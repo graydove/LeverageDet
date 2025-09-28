@@ -98,29 +98,31 @@ python infer_linear_fixedval.py \
     
 
 ### Facebook/dinov3-vit7b16-pretrain-lvd1689m + MLP
-- **Chameleon (Val/Test): Acc  93.12%  |  P 95.66%  |  R 87.95%  |  F1 91.64%**
 
-- Other datasets:
-  - **GenImage: Acc 96.47%**
-  
-  | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
-  | ----- | ------ | ----- | ---------- | -------- | -------- | ----- | ------ |
-  | 85.80 | 98.40  | 96.97 | 92.53      | 99.83    | 99.64    | 99.29 | 99.33  |
-  
-  - **AIGI-Holmes P3: Acc 96.58%**
-  
-  | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
-  | ----- | -------- | ----- | ------------ | ------------ | -------- | --------- | ------ | ------ | ----- |
-  | 92.28 | 99.79    | 99.73 | 99.30        | 98.48        | 99.79    | 99.87     | 84.77  | 99.46  | 92.31 |
-  
-  - **Real-Robust Dataset: Acc 85.33%**
-  
-  | Original | Transfer | Redigital |
-  | -------- | -------- | --------- |
-  | 93.89    | 83.70    | 78.41     |
+* **Chameleon (Val/Test): Acc 93.12% | P 95.66% | R 87.95% | F1 91.64%**
+* Other datasets:
+
+  * **GenImage: Acc 96.47%**
+
+    | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
+    | ----- | ------ | ----- | ---------- | -------- | -------- | ----- | ------ |
+    | 85.80 | 98.40  | 96.97 | 92.53      | 99.83    | 99.64    | 99.29 | 99.33  |
+
+  * **AIGI-Holmes P3: Acc 96.58%**
+
+    | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
+    | ----- | -------- | ----- | ------------ | ------------ | -------- | --------- | ------ | ------ | ----- |
+    | 92.28 | 99.79    | 99.73 | 99.30        | 98.48        | 99.79    | 99.87     | 84.77  | 99.46  | 92.31 |
+
+  * **Real-Robust Dataset: Acc 85.33%**
+
+    | Original | Transfer | Redigital |
+    | -------- | -------- | --------- |
+    | 93.89    | 83.70    | 78.41     |
+
+    
 
 
-  
 ## Layout
 - `train_linear_fixedval.py`: single-GPU training (frozen backbone + linear head).
 - `infer_linear_fixedval.py`: multi-dataset evaluation and summary reporting.
