@@ -82,6 +82,7 @@ python infer_linear_fixedval.py \
     | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
     | ----- | ------ | ----- | ---------- | -------- | -------- | ----- | ------ |
     | 62.82 | 77.20  | 88.98 | 87.51      | 98.70    | 98.36    | 88.22 | 96.73  |
+    
   - **AIGI-Holmes P3: Acc 91.54%**
     
     | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
