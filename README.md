@@ -1,4 +1,4 @@
-# LeverageDet (DINOv3) — Unofficial Reproduction
+<img width="116" height="24" alt="image" src="https://github.com/user-attachments/assets/826d1c61-5a77-43d9-bdc6-ec9e688c9bc7" /># LeverageDet (DINOv3) — Unofficial Reproduction
 
 > This repository contains an unofficial DINOv3-based reproduction of the paper (arXiv: https://arxiv.org/pdf/2509.12995). We freeze a DINOv3 vision backbone and train a lightweight linear classification head (linear probe) for AIGC image detection. Reproduction results differ from those reported in the paper; see “Reproduction Notes & Differences”.
 
@@ -74,21 +74,29 @@ python infer_linear_fixedval.py \
   - Data splits: training/validation dataset composition and distributions.
 
 ## Results
+### facebook/dinov3-vitl16-pretrain-lvd1689m + mlp
 - Chameleon (Val/Test): Acc 85.26% | P 80.28% | R 87.02% | F1 83.52%
-
 - Other datasets:
   - GenImage: Acc 87.32%
-  
     | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
     | ----- | ------ | ----- | ---------- | ---------------------- | ---------------------- | ----- | ------ |
     | 62.82 | 77.20  | 88.98 | 87.51      | 98.70                  | 98.36                  | 88.22 | 96.73  |
-  
   - AIGI-Holmes P3: Acc 91.54%
-  
     | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
     | ----- | -------- | ----- | ------------ | ------------ | -------- | --------- | ------ | ------ | ----- |
     | 91.46 | 97.66    | 91.01 | 95.58        | 89.99        | 97.90    | 98.30     | 80.75  | 97.90  | 74.84 |
-  
+&nbsp;
+### facebook/dinov3-vit7b16-pretrain-lvd1689m + mlp
+- Chameleon (Val/Test): Acc 93.12% | P 95.66% |R 87.95% | F1 91.64%
+- Other datasets:
+  - GenImage: Acc 96.47%
+    | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
+    | ----- | ------ | ----- | ---------- | ---------------------- | ---------------------- | ----- | ------ |
+    | 85.80 | 98.40  | 96.97 | 92.53      | 99.83                  | 99.64                  | 99.29 | 99.33  |
+  - AIGI-Holmes P3: Acc 96.58%
+    | FLUX  | Infinity | Janus | Janus-Pro-1B | Janus-Pro-7B | LlamaGen | PixArt-XL | SD35-L | Show-o | VAR   |
+    | ----- | -------- | ----- | ------------ | ------------ | -------- | --------- | ------ | ------ | ----- |
+    | 92.28 | 99.79    | 99.73 | 99.30        | 98.48        | 99.79    | 99.87     | 84.77  | 99.46  | 92.31 |
     
 
 ## Layout
