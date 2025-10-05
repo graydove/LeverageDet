@@ -56,12 +56,20 @@ bash train.sh
 ## Inference / Evaluation
 - Evaluate one or more dataset roots (each root containing multiple subfolders), and print Acc / Precision / Recall / F1:
 ```shell
-python infer_linear_fixedval.py \
-  --data_roots /path/A /path/B \
+python infer_linear_fixedval_vitl.py \
+  --data_roots /path/A /path/B /path/C \
   --model_id dinov3-vitl16-pretrain-lvd1689m \
-  --ckpt checkpoints/dinov3_linear_head_best.pt \
-  --batch_size 64 --amp
+  --ckpt checkpoints/dinov3_linear_head_best_vitl.pt \
+  --batch_size 64 --amp --csv results.csv
 ```
+```shell
+python infer_linear_fixedval_vit7b.py \
+  --data_roots /path/A /path/B /path/C \
+  --model_id dinov3-vit7b16-pretrain-lvd1689m \
+  --ckpt checkpoints/dinov3_linear_head_best_vit7b.pt \
+  --batch_size 64 --amp --csv results.csv
+```
+
 - If `--ckpt` is missing, the script tries `checkpoints/dinov3_linear_head_best_multi.pt`. If none are found, it runs with a randomly initialized head (expect poor performance).
 
 ## Reproduction Notes & Differences
@@ -77,6 +85,13 @@ python infer_linear_fixedval.py \
 - **Chameleon (Val/Test): Acc  85.26%  |  P 80.28%  |  R 87.02%  |  F1 83.52%**
 
 - Other datasets:
+  
+  - **ForenSynths: Acc 72.06%**
+    
+    | ProGAN | StyleGAN | StyleGAN2 | BigGAN | CycleGAN | StarGAN | GauGAN | Deepfake | SITD  | SAN   | CRN   | IMLE  | WFIR  | Mean  |
+    | ------ | -------- | --------- | ------ | -------- | ------- | ------ | -------- | ----- | ----- | ----- | ----- | ----- | ----- |
+    | 90.43  | 67.43    | 73.03     | 90.68  | 79.11    | 54.98   | 92.48  | 53.17    | 71.39 | 58.90 | 67.13 | 76.32 | 61.80 | 72.06 |
+    
   - **GenImage: Acc 87.32%**
     
     | ADM   | BigGAN | Glide | Midjourney | SD_v_1_4 | SD_v_1_5 | VQDM  | WuKong |
@@ -100,7 +115,14 @@ python infer_linear_fixedval.py \
 ### Facebook/dinov3-vit7b16-pretrain-lvd1689m + MLP
 
 * **Chameleon (Val/Test): Acc 93.12% | P 95.66% | R 87.95% | F1 91.64%**
+
 * Other datasets:
+
+  * **ForenSynths: Acc 82.05%**
+
+    | ProGAN | StyleGAN | StyleGAN2 | BigGAN | CycleGAN | StarGAN | GauGAN | Deepfake | SITD  | SAN   | CRN   | IMLE  | WFIR  | Mean  |
+    | ------ | -------- | --------- | ------ | -------- | ------- | ------ | -------- | ----- | ----- | ----- | ----- | ----- | ----- |
+    | 98.65  | 89.73    | 92.78     | 99.13  | 81.42    | 69.11   | 99.76  | 60.33    | 55.83 | 56.16 | 82.83 | 89.63 | 91.30 | 82.05 |
 
   * **GenImage: Acc 96.47%**
 
@@ -115,17 +137,17 @@ python infer_linear_fixedval.py \
     | 92.28 | 99.79    | 99.73 | 99.30        | 98.48        | 99.79    | 99.87     | 84.77  | 99.46  | 92.31 |
 
   * **Real-Robust Dataset: Acc 85.33%**
-
+  
     | Original | Transfer | Redigital |
     | -------- | -------- | --------- |
     | 93.89    | 83.70    | 78.41     |
-
+  
     
 
 
 ## Layout
 - `train_linear_fixedval.py`: single-GPU training (frozen backbone + linear head).
-- `infer_linear_fixedval.py`: multi-dataset evaluation and summary reporting.
+- `infer_linear_fixedval_vit7b.py`: multi-dataset evaluation and summary reporting.
 - `train.sh`: wrapper that chooses single vs multi-GPU entry based on visible devices.
 - `checkpoints/`: training artifacts (ignored by Git).
 - `dinov3-vitl16-pretrain-lvd1689m/`: local DINOv3 weights folder.

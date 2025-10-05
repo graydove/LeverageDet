@@ -1,4 +1,7 @@
-import argparse, os, json
+import argparse
+import os
+import json
+import csv
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -255,9 +258,10 @@ def main():
     parser.add_argument("--batch_size", type=int, default=64)
     parser.add_argument("--num_workers", type=int, default=8)
     parser.add_argument("--amp", action="store_true")
+    parser.add_argument("--csv", type=str, default="eval_results.csv", help="保存结果的CSV路径（默认：eval_results.csv）")
     args = parser.parse_args()
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # Processor with fallback
     try:
@@ -312,13 +316,23 @@ def main():
                 continue
             meter, _ = evaluate(backbone, head, loader, use_amp=args.amp, device=device)
             print(f"  {sub}: Acc {meter.acc*100:.2f}% (N={meter.total})")
-            results.append((f"{os.path.basename(os.path.normpath(root))}/{sub}", meter.acc, meter.precision, meter.recall, meter.f1))
+            results.append((f"{os.path.basename(os.path.normpath(root))}/{sub}", meter.acc, meter.precision, meter.recall, meter.f1, meter.total))
 
     if results:
         print("\nSummary:")
-        for name, acc, p, r, f1 in results:
+        for name, acc, p, r, f1, N in results:
             print(f"{name}: Acc {acc*100:.2f}% | P {p*100:.2f}% | R {r*100:.2f}% | F1 {f1*100:.2f}%")
+
+    # --- 将结果写入 CSV ---
+    with open(args.csv, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["dataset", "acc(%)", "precision(%)", "recall(%)", "f1(%)", "N"])
+        for name, acc, p, r, f1, N in results:
+            writer.writerow([name, f"{acc*100:.4f}", f"{p*100:.4f}", f"{r*100:.4f}", f"{f1*100:.4f}", N])
+    print(f"\n[Saved] CSV written to: {args.csv}")
 
 
 if __name__ == "__main__":
     main()
+
+# 请你修改上述代码，使得输出结果全部保存到csv文件中
